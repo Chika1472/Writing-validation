@@ -1,0 +1,30 @@
+project_root: ..
+
+model:
+  char_ngram_range: [3, 5]
+  word_ngram_range: [1, 2]
+  char_min_df: 3
+  word_min_df: 2
+  prompt_min_df: 2
+  include_prompt: true
+  include_prompt_text: true
+  include_surface: true
+  clip: [1.0, 5.0]
+
+# These folds are generated again from each outer-training partition. The held
+# outer fold is never passed to make_folds or to candidate scoring.
+inner_cv:
+  n_splits: 4
+  seed: 2042
+  score_bins: 5
+
+# Cartesian grid: 12 candidates per outer fold. Config order is the deterministic
+# tie-break, so keep the preferred conservative candidate first.
+search:
+  alpha: [3.0, 1.0, 10.0]
+  max_char_features: [120000, 80000]
+  max_word_features: [60000, 40000]
+
+selection:
+  metric: trait_mean_rmse
+  tie_break: config_order

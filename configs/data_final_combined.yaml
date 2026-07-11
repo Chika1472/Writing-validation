@@ -1,0 +1,19 @@
+project_root: ..
+
+# This configuration is only valid after the competition rules have been checked
+# and explicitly permit using validation labels for final model training.
+paths:
+  train: artifacts/final_train_validation/data/train_validation_combined.jsonl
+  artifacts: artifacts/final_train_validation
+
+final_combined:
+  train_source: 데이터셋/글쓰기채점능력평가2026_train.jsonl
+  validation_source: 데이터셋/글쓰기채점능력평가2026_validation.jsonl
+  manifest: artifacts/final_train_validation/data/train_validation_combined.manifest.json
+
+# Kept compatible with scripts/make_folds.py and
+# scripts/orchestrate_scorer_training.py --data-config.
+folds:
+  n_splits: 5
+  seed: 42
+  score_bins: 5

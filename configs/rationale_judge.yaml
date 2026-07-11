@@ -1,0 +1,24 @@
+project_root: ..
+
+# The assignment key is intentionally absent. judge_rationales_local.py cannot accept it.
+seed: 2026
+reason_max_chars: 220
+
+runtime:
+  n_ctx: 8192
+  n_batch: 512
+  n_gpu_layers: -1
+  n_threads: null
+  use_mmap: true
+  use_mlock: false
+  verbose: false
+
+generation:
+  max_tokens: 384
+  temperature: 0.0
+  top_p: 1.0
+  top_k: 40
+  min_p: 0.0
+  repeat_penalty: 1.0
+  stop: []
+  max_attempts: 2

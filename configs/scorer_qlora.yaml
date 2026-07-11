@@ -1,0 +1,42 @@
+model:
+  model_id: Qwen/Qwen3-14B
+  revision: null
+  enable_thinking: false
+  max_length: 2048
+  pooling: last_token
+  projection_size: 512
+  head_dropout: 0.05
+  blend_weight: 0.5
+quantization:
+  load_in_4bit: true
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_use_double_quant: true
+  compute_dtype: bfloat16
+lora:
+  rank: 32
+  alpha: 64
+  dropout: 0.05
+  target_modules: all-linear
+training:
+  seed: 42
+  learning_rate: 0.0001
+  head_learning_rate: 0.0002
+  weight_decay: 0.01
+  warmup_ratio: 0.05
+  epochs: 4
+  micro_batch_size: 1
+  gradient_accumulation_steps: 16
+  gradient_checkpointing: true
+loss:
+  regression_weight: 1.0
+  ordinal_weight: 0.3
+  # Pairwise is an explicit P1 ablation. When set above zero, also set
+  # training.micro_batch_size=2; the trainer then activates prompt-pair batches.
+  pairwise_weight: 0.0
+  pairwise_minimum_gap: 0.0
+  pairwise_temperature: 1.0
+  pairwise_order_weight: 0.5
+  # Soft-rank uses same-prompt group batches of micro_batch_size items. It may
+  # be enabled independently or together with pairwise_weight.
+  soft_rank_weight: 0.0
+  soft_rank_temperature: 0.25

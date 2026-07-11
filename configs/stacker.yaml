@@ -1,0 +1,8 @@
+method: trait_mse_simplex
+epsilon: 1.0e-12
+calibration:
+  method: affine_prompt_shrinkage
+  positive_slope: true
+  prompt_shrinkage: 20.0
+  clip_min: 1.0
+  clip_max: 5.0

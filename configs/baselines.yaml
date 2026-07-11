@@ -1,0 +1,15 @@
+surface_ols:
+  include_prompt: true
+tfidf_ridge:
+  alpha: 3.0
+  char_ngram_range: [3, 5]
+  word_ngram_range: [1, 2]
+  char_min_df: 3
+  word_min_df: 2
+  prompt_min_df: 2
+  max_char_features: 120000
+  max_word_features: 60000
+  include_prompt: true
+  include_prompt_text: true
+  include_surface: true
+

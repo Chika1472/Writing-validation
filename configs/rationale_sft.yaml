@@ -1,0 +1,37 @@
+project_root: ..
+model:
+  model_id: Qwen/Qwen3-14B
+  revision: null
+  max_input_length: 4096
+  max_new_tokens: 640
+  max_sequence_length: 4736
+  enable_thinking: false
+quantization:
+  load_in_4bit: true
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_use_double_quant: true
+  compute_dtype: bfloat16
+lora:
+  rank: 32
+  alpha: 64
+  dropout: 0.05
+  target_modules: all-linear
+training:
+  seed: 42
+  epochs: 2
+  micro_batch_size: 1
+  gradient_accumulation_steps: 16
+  learning_rate: 0.0001
+  weight_decay: 0.01
+  warmup_ratio: 0.05
+  gradient_checkpointing: true
+  validation_fraction: 0.1
+  # Small score perturbations reduce train/inference shift between OOF scorer
+  # scores and final stacked scores without changing the evidence target text.
+  score_jitter: 0.08
+  score_jitter_copies: 1
+silver:
+  minimum_examples: 500
+  minimum_acceptance_rate: 0.5
+  max_attempts: 2
+  require_grounding: true

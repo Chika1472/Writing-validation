@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "korean-essay-scoring-2026"
+version = "0.1.0"
+description = "Reproducible baselines and Qwen3-14B scorer for the 2026 Korean essay scoring challenge"
+requires-python = ">=3.10,<3.13"
+dependencies = [
+  "joblib>=1.4,<2",
+  "numpy>=2.0,<3",
+  "pandas>=2.2,<4",
+  "PyYAML>=6.0,<7",
+  "scikit-learn>=1.5,<2",
+  "scipy>=1.13,<2",
+]
+
+[project.optional-dependencies]
+qwen = [
+  "accelerate>=1.0,<2",
+  "bitsandbytes>=0.45,<1",
+  "peft>=0.14,<1",
+  "safetensors>=0.4,<1",
+  "torch>=2.5,<3",
+  "transformers>=4.51,<5",
+]
+judge = ["llama-cpp-python>=0.3.16,<1"]
+test = ["pytest>=8.0,<9", "torch>=2.5,<3"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

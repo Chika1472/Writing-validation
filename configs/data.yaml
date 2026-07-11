@@ -1,0 +1,11 @@
+project_root: ..
+paths:
+  train: 데이터셋/글쓰기채점능력평가2026_train.jsonl
+  validation: 데이터셋/글쓰기채점능력평가2026_validation.jsonl
+  zero_shot_predictions: qwen3_14b_zero_shot/qwen3_14b_zero_shot_strict_v2_validation.jsonl
+  artifacts: artifacts
+folds:
+  n_splits: 5
+  seed: 42
+  score_bins: 5
+

@@ -1,0 +1,57 @@
+schema_version: submission_inference_v2
+project_root: ..
+
+# This file is intentionally fail-closed. Replace every PLACEHOLDER path and pin
+# model_revision before the first L40S smoke test. package_submission.py rewrites
+# paths into a portable package and sets package_manifest automatically.
+runtime:
+  offline_required: true
+  hf_home: null
+  package_manifest: null
+  requirements_lock: null
+  device: cuda:0
+  require_cuda: true
+  require_single_visible_gpu: true
+  required_gpu_name_contains: L40S
+  expected_rows: 400
+  batch_size: 1
+  scorer_precision: 4bit
+  rationale_precision: 4bit
+  seed: 42
+  deterministic_algorithms: true
+
+scoring:
+  # Use qwen_ensemble for the conservative path. Switch to
+  # qwen_multisource_stacker only after every configured auxiliary source and
+  # the exact OOF stacker win their promotion gates.
+  mode: qwen_ensemble
+  qwen:
+    scorer_name: qwen3_scorer_ensemble
+    checkpoints:
+      - artifacts/deployment/PLACEHOLDER_SCORER_CHECKPOINT
+    model_id: Qwen/Qwen3-14B
+    model_revision: null
+    calibrator: null
+  baseline:
+    artifact: null
+  anchor:
+    artifact: null
+  assessment:
+    artifact: null
+  stacker:
+    artifact: null
+    source_aliases:
+      qwen: qwen
+      baseline: null
+      anchor: null
+      assessment: null
+
+rationale:
+  # deterministic is a zero-generation, exact-span fallback. Change to adapter
+  # and provide a checkpoint only after rationale SFT passes grounding QA.
+  mode: deterministic
+  checkpoint: null
+  max_attempts: 2
+
+output:
+  model_name: qwen3_14b_essay_scorer_2026

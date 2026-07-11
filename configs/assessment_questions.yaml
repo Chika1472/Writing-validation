@@ -1,0 +1,26 @@
+project_root: ..
+branch:
+  name: assessment_ridge_candidate_v1
+  question_version: korean_aq_v1
+  feature_type: restricted_answer_probabilities
+  candidate_only: true
+  auto_promote: false
+model:
+  model_id: Qwen/Qwen3-14B
+  revision: null
+  tokenizer_revision: null
+  precision: 4bit
+  max_length: 3072
+  batch_size: 4
+  answer_codes: [A, B, C, D, E]
+quantization:
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_use_double_quant: true
+  compute_dtype: bfloat16
+ridge:
+  question_count_candidates: [3, 4, 5, 6]
+  alpha_grid: [0.01, 0.1, 1.0, 10.0, 100.0]
+  selection_metric: rmse
+  normalization: inner_train_standardization
+  clip_min: 1.0
+  clip_max: 5.0

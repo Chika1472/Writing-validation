@@ -1,0 +1,14 @@
+project_root: ..
+baseline_precision: 4bit
+candidate_precision: bf16
+bootstrap:
+  n_resamples: 5000
+  confidence: 0.95
+  seed: 42
+promotion_gate:
+  # BF16 costs substantially more memory, so an exact tie is not promoted.
+  max_rmse_increase: 0.002
+  max_spearman_drop: 0.001
+  min_rmse_improvement: 0.001
+  min_spearman_improvement: 0.001
+  min_probability: 0.8

@@ -1,0 +1,12 @@
+{
+  "validation": {
+    "split": "validation",
+    "expected_rows": 400,
+    "generated_rows": 400,
+    "parsed_rows": 400,
+    "missing_rows": 0,
+    "parse_fail_rows": 0,
+    "parse_success_rate": 1.0,
+    "mean_elapsed_sec": 2.3232375
+  }
+}

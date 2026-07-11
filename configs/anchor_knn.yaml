@@ -1,0 +1,11 @@
+artifact_version: 1
+method: prompt_aware_cosine_knn
+k: 8
+temperature: 0.07
+unknown_prompt_policy: global
+representation: shared_hidden_post_projection
+prompt_identity: sha256_exact_prompt_text
+# k and temperature are prespecified before OOF construction. Selecting them on
+# the same outer OOF labels would bias the reported score; a true nested search
+# would require additional inner-trained scorer checkpoints.
+selection_policy: prespecified_without_outer_oof_labels
