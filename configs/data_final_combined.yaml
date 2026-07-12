@@ -7,8 +7,8 @@ paths:
   artifacts: artifacts/final_train_validation
 
 final_combined:
-  train_source: 데이터셋/글쓰기채점능력평가2026_train.jsonl
-  validation_source: 데이터셋/글쓰기채점능력평가2026_validation.jsonl
+  train_source: dataset/글쓰기채점능력평가2026_train.jsonl
+  validation_source: dataset/글쓰기채점능력평가2026_validation.jsonl
   manifest: artifacts/final_train_validation/data/train_validation_combined.manifest.json
 
 # Kept compatible with scripts/make_folds.py and
